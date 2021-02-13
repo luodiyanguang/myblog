@@ -16,7 +16,7 @@ if(env === "dev") {
 
 if(env === "prd") {
   MYSQL_CONF = {
-    host: "localhost",
+    host: "127.0.0.1",
     user: "root",
     password: "15605227659wl",
     port: 3306,

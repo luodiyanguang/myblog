@@ -52,21 +52,33 @@ const serverHander = (req , res) => {
     req.body = postData
      
     //处理blog路由
-    const blogData = handerBlogRouter(req , res)
-    if(blogData) {
-       res.end(
-         JSON.stringify(blogData)
-       )
-       return
+    // const blogData = handerBlogRouter(req , res)
+    // if(blogData) {
+    //    res.end(
+    //      JSON.stringify(blogData)
+    //    )
+    //    return
+    // }
+    const blogResult = handerBlogRouter(req , res)
+    if(blogResult) {
+      blogResult.then(blogData => {
+        // console.log(blogData)
+        res.end(
+          JSON.stringify(blogData)
+        )
+      })
+      return
     }
 
     //处理user路由
-    const userData = handerUserRouter(req , res)
-    if(userData) {
-      res.end(
-        JSON.stringify(userData)
-      )
-      return
+    const userResult = handerUserRouter(req , res)
+    if(userResult) {
+      userResult.then(userData => {
+        res.end(
+          JSON.stringify(userData)
+        )
+      })
+      return 
     }
 
     //处理未命中路由，返回404
